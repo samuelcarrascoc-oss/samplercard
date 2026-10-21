@@ -166,6 +166,60 @@ main { padding: 0 max(16px, calc((100% - 1200px) / 2)) 40px; }
 .info-caja h2 { margin: 0 0 8px; font-size: 1.2rem; font-weight: 800; }
 .info-caja p { margin: 0; color: var(--suave); line-height: 1.7; }
 
+/* Portada v2: vitrinas armadas con fotos reales del stock */
+.vitrina {
+  position: relative; overflow: hidden; border-radius: 20px; border: 1px solid var(--borde);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: center; gap: 24px;
+  min-height: 340px; padding: clamp(24px, 4vw, 52px);
+  background:
+    radial-gradient(55% 80% at 78% 50%, rgba(123, 47, 247, .32) 0%, transparent 70%),
+    radial-gradient(40% 60% at 92% 15%, rgba(0, 240, 255, .16) 0%, transparent 70%),
+    linear-gradient(180deg, #0f2236 0%, var(--panel) 100%);
+}
+.vitrina--invertida { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+.vitrina--invertida .vitrina-texto { order: 2; }
+.vitrina--invertida {
+  background:
+    radial-gradient(55% 80% at 22% 50%, rgba(0, 240, 255, .16) 0%, transparent 70%),
+    radial-gradient(40% 60% at 8% 85%, rgba(123, 47, 247, .3) 0%, transparent 70%),
+    linear-gradient(180deg, #0f2236 0%, var(--panel) 100%);
+}
+.vitrina--hero { min-height: 460px; }
+.vitrina::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cian), transparent); opacity: .6;
+}
+.vitrina-texto { position: relative; z-index: 1; }
+.vitrina h1, .vitrina h2 { margin: 14px 0 0; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; text-wrap: balance; }
+.vitrina h1 { font-size: clamp(2rem, 4.4vw, 3.6rem); }
+.vitrina h2 { font-size: clamp(1.5rem, 3vw, 2.3rem); }
+.vitrina p { margin: 12px 0 0; color: var(--suave); font-size: clamp(.95rem, 1.3vw, 1.08rem); max-width: 46ch; }
+.vitrina-arte { position: relative; display: block; height: 100%; min-height: 260px; }
+
+/* Abanico de cartas (hero) */
+.abanico img {
+  position: absolute; top: 50%; left: 50%; width: min(42%, 230px); aspect-ratio: 5 / 7; object-fit: cover;
+  border-radius: 4.5% / 3.2%; box-shadow: 0 18px 40px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .08);
+  transition: transform .3s;
+}
+.abanico img:nth-child(1) { transform: translate(-112%, -47%) rotate(-13deg); z-index: 1; }
+.abanico img:nth-child(2) { transform: translate(-50%, -54%); z-index: 3; }
+.abanico img:nth-child(3) { transform: translate(12%, -47%) rotate(13deg); z-index: 2; }
+.abanico:hover img:nth-child(1) { transform: translate(-122%, -47%) rotate(-16deg); }
+.abanico:hover img:nth-child(3) { transform: translate(22%, -47%) rotate(16deg); }
+
+/* Mosaico de fotos (decks, accesorios) */
+.mosaico { display: flex; align-items: center; justify-content: center; }
+.mosaico img {
+  width: 44%; aspect-ratio: 1; object-fit: cover; border-radius: 14px; margin: 0 -3%;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .08); background: var(--panel-2);
+  transition: transform .3s;
+}
+.mosaico img:nth-child(odd) { transform: rotate(-5deg) translateY(6%); }
+.mosaico img:nth-child(even) { transform: rotate(5deg) translateY(-6%); z-index: 1; }
+.mosaico.cuatro img { width: 30%; margin: 0 -2.5%; }
+.mosaico:hover img { transform: rotate(0) translateY(0); }
+
 /* Pie */
 .pie { border-top: 1px solid var(--borde); padding: 24px 16px 32px; text-align: center; color: var(--suave); font-size: .9rem; }
 .pie p { margin: 4px 0; }
@@ -184,6 +238,11 @@ main { padding: 0 max(16px, calc((100% - 1200px) / 2)) 40px; }
   .portada { gap: 16px; padding-top: 14px; }
   .banner-texto, .banner--hero .banner-texto { position: static; transform: none; width: auto; padding: 18px 18px 22px; }
   .banner::after { display: none; }
+  .vitrina, .vitrina--invertida { grid-template-columns: 1fr; padding: 22px 18px 26px; min-height: 0; gap: 8px; }
+  .vitrina--invertida .vitrina-texto { order: 0; }
+  .vitrina-arte { order: -1; min-height: 0; height: auto; aspect-ratio: 16 / 10; }
+  .vitrina--hero .vitrina-arte { aspect-ratio: 4 / 3; }
+  .abanico img { width: 38%; }
   .info { grid-template-columns: 1fr; }
 }
 

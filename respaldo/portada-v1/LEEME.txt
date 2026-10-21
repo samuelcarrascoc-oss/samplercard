@@ -1,0 +1,1 @@
+Portada v1 (fondos de la idea inicial). Restaurar: copiar portada.html dentro de index.html en lugar del bloque #portada; fondos en assets/banners/. Tag git: portada-v1.

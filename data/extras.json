@@ -1,0 +1,152 @@
+[
+ {
+  "ref": "collar-corazon",
+  "seccion": "accesorios",
+  "publicado": true,
+  "nombre": "Collares Corazón Inspirados en Pokémon",
+  "precio": 5000,
+  "stock": 2,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/collar-1.jpg",
+   "assets/extras/collar-2.jpg",
+   "assets/extras/collar-3.jpg"
+  ],
+  "descripcion": "Set de 2 collares de pareja o de mejores amigos, inspirados en Pokémon, con colgantes de metal en forma de medio corazón: uno negro y otro rosado. Al juntar los dos colgantes se forma un corazón completo.\n- Incluye 2 collares: uno con el colgante negro y otro con el colgante rosado.\n- Colgantes de metal con el diseño impreso a todo color.\n- Cadena negra de 60 cm cada una.\n- Cada colgante mide aprox. 3 cm de alto × 2,7 cm de ancho.\n- Accesorio de inspiración Pokémon, no es un producto oficial.\n- Producto nuevo. El precio es por el set de 2 collares."
+ },
+ {
+  "ref": "silly-eevee",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Café",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-eevee-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño eevee; falta 2a foto del usuario antes de publicar"
+ },
+ {
+  "ref": "silly-espeon",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Lila",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-espeon-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño espeon; falta 2a foto del usuario antes de publicar"
+ },
+ {
+  "ref": "silly-flareon",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Rojo",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-flareon-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño flareon; falta 2a foto del usuario antes de publicar"
+ },
+ {
+  "ref": "silly-glaceon",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Celeste",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-glaceon-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño glaceon; falta 2a foto del usuario antes de publicar"
+ },
+ {
+  "ref": "silly-jolteon",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Amarillo",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-jolteon-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño jolteon; falta 2a foto del usuario antes de publicar"
+ },
+ {
+  "ref": "silly-leafeon",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Verde",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-leafeon-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño leafeon; falta 2a foto del usuario antes de publicar"
+ },
+ {
+  "ref": "silly-sylveon",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Rosado",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-sylveon-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño sylveon; falta 2a foto del usuario antes de publicar"
+ },
+ {
+  "ref": "silly-umbreon",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Negro",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-umbreon-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño umbreon; falta 2a foto del usuario antes de publicar"
+ },
+ {
+  "ref": "silly-vaporeon",
+  "seccion": "accesorios",
+  "publicado": false,
+  "grupo": "Silly Card Holo",
+  "nombre": "Silly Card Holo - Azul",
+  "precio": 3000,
+  "stock": 1,
+  "estado": "Nuevo",
+  "fotos": [
+   "assets/extras/silly-vaporeon-1.jpg"
+  ],
+  "descripcion": "Carta coleccionable holográfica con arte alternativo divertido. NO es una carta oficial de Pokémon TCG: es un coleccionable de fan art, no sirve para torneos oficiales.\n- Acabado holográfico texturizado\n- Tamaño de carta estándar (63 x 88 mm)\n- Precio por unidad: $3.000 cada carta\n- Consulta por WhatsApp para comprar o ver más fotos",
+  "nota_interna": "diseño vaporeon; falta 2a foto del usuario antes de publicar"
+ }
+]

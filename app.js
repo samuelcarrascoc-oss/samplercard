@@ -6,8 +6,8 @@ const POR_TANDA = 48;
 const SECCIONES = {
   inicio: { titulo: "samplercard · Pokémon TCG Chile" },
   singles: { titulo: "Singles", bajada: "Cartas sueltas en stock. Toca una carta para comprarla por WhatsApp o en TCGMatch." },
-  decks: { titulo: "Decks", bajada: "Mazos armados listos para jugar." },
-  accesorios: { titulo: "Accesorios", bajada: "Cajas, pins, peluches y más para tu colección." },
+  decks: { titulo: "Deck - Packs", bajada: "Mazos completos y packs de cartas, listos para jugar." },
+  accesorios: { titulo: "Accesorios", bajada: "Cajas, pins, peluches y más para cuidar tu colección." },
   sellados: { titulo: "Sellados", bajada: "Producto sellado: sobres, ETB y colecciones." },
 };
 
@@ -30,11 +30,19 @@ function linkWhatsapp(p) {
 
 async function cargar() {
   try {
-    const [cat, sell] = await Promise.all([
+    const opcional = (url) => fetch(url, { cache: "no-cache" }).then((r) => r.json()).catch(() => []);
+    const [cat, sell, extras] = await Promise.all([
       fetch("data/catalogo.json", { cache: "no-cache" }).then((r) => r.json()),
-      fetch("data/sellados.json", { cache: "no-cache" }).then((r) => r.json()).catch(() => []),
+      opcional("data/sellados.json"),
+      opcional("data/extras.json"),
     ]);
-    estado.datos = { ...cat, sellados: sell };
+    // extras.json: productos que no están en TCGMatch (solo WhatsApp); "publicado": false los oculta
+    const propios = extras.filter((e) => e.publicado !== false);
+    estado.datos = {
+      ...cat,
+      accesorios: [...cat.accesorios, ...propios.filter((e) => e.seccion !== "sellados")],
+      sellados: [...sell, ...propios.filter((e) => e.seccion === "sellados")],
+    };
   } catch (e) {
     $("vacio").hidden = false;
     $("vacio").textContent = "No se pudo cargar el catálogo. Intenta recargar la página.";
@@ -42,6 +50,7 @@ async function cargar() {
   }
   llenarFiltros();
   llenarCifras();
+  llenarArte();
   if (estado.datos.actualizado) {
     const f = new Date(estado.datos.actualizado);
     $("actualizado").textContent = "Precios y stock sincronizados con TCGMatch · " +
@@ -61,10 +70,29 @@ function llenarFiltros() {
 function llenarCifras() {
   const cifras = [
     [productos("singles").length, "singles en stock"],
-    [productos("decks").length, "decks armados"],
+    [productos("decks").length, "deck - packs"],
     [productos("accesorios").length, "accesorios"],
   ].filter(([n]) => n > 0);
   $("cifras").innerHTML = cifras.map(([n, t]) => `<div><strong>${n.toLocaleString("es-CL")}</strong><span>${t}</span></div>`).join("");
+}
+
+// Portada: las imágenes salen del stock real, así nunca muestra algo que no hay
+function llenarArte() {
+  const img = (src, alt) => `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">`;
+  // las 3 cartas más caras cuya imagen sí carga (algunas fotos del catálogo fallan); la más cara al centro
+  const candidatas = productos("singles").filter((c) => c.foto).sort((a, b) => b.precio - a.precio).slice(0, 10);
+  const carga = (c) => new Promise((ok) => { const i = new Image(); i.onload = () => ok(c); i.onerror = () => ok(null); i.src = c.foto; });
+  Promise.all(candidatas.map(carga)).then((r) => {
+    const top = r.filter(Boolean).slice(0, 3);
+    $("arte-hero").innerHTML = [top[1], top[0], top[2]].filter(Boolean).map((c) => img(c.foto, c.nombre)).join("");
+  });
+  for (const s of ["decks", "accesorios", "sellados"]) {
+    const fotos = productos(s).filter((p) => (p.fotos || [])[0]).slice(0, 4);
+    const arte = $(`arte-${s}`);
+    arte.classList.toggle("cuatro", fotos.length > 3);
+    arte.innerHTML = fotos.map((p) => img(p.fotos[0], p.nombre)).join("");
+    $(`v-${s}`).hidden = productos(s).length === 0;
+  }
 }
 
 function productos(seccion) {

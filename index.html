@@ -25,7 +25,7 @@
   <nav class="secciones" aria-label="Secciones">
     <a href="#inicio" data-seccion="inicio">Inicio</a>
     <a href="#singles" data-seccion="singles">Singles</a>
-    <a href="#decks" data-seccion="decks">Decks</a>
+    <a href="#decks" data-seccion="decks">Deck - Packs</a>
     <a href="#accesorios" data-seccion="accesorios">Accesorios</a>
     <a href="#sellados" data-seccion="sellados">Sellados</a>
   </nav>
@@ -33,67 +33,56 @@
 
 <main>
   <div class="portada" id="portada" hidden>
-    <section class="banner banner--hero texto-izq">
-      <picture>
-        <source media="(max-width: 720px)" srcset="assets/banners/hero-movil.jpg">
-        <img src="assets/banners/hero.jpg" alt="Cartas Pokémon ilustradas en abanico" width="1600" height="760">
-      </picture>
-      <div class="banner-texto">
-        <span class="etiqueta">Pokémon TCG · Chile</span>
-        <h1>Tus singles, en tus manos.</h1>
-        <p>Cartas sueltas, decks prearmados, accesorios y sellado. Coordina la entrega presencial en la Región Metropolitana.</p>
+    <section class="vitrina vitrina--hero">
+      <div class="vitrina-texto">
+        <span class="etiqueta">Pokémon TCG · Santiago</span>
+        <h1>La carta que buscas, a un mensaje.</h1>
+        <p>Singles en inglés y español revisados uno a uno, con precio y stock al día. Entrega coordinada en la Región Metropolitana o envío (costo aparte).</p>
         <div class="acciones">
-          <a class="btn btn--principal" href="#singles">Ver catálogo</a>
-          <a class="btn btn--suave" id="hero-whatsapp" href="https://wa.me/56971022853" target="_blank" rel="noopener">Escríbenos</a>
+          <a class="btn btn--principal" href="#singles">Ver singles</a>
+          <a class="btn btn--suave" href="https://wa.me/56971022853?text=Hola!%20Quiero%20consultar%20por%20una%20carta" target="_blank" rel="noopener">Consultar por WhatsApp</a>
         </div>
         <div class="cifras" id="cifras"></div>
       </div>
+      <a class="vitrina-arte abanico" id="arte-hero" href="#singles" aria-label="Ver singles"></a>
     </section>
 
-    <section class="banner texto-der">
-      <picture>
-        <source media="(max-width: 720px)" srcset="assets/banners/decks-movil.jpg">
-        <img src="assets/banners/decks.jpg" alt="Cartas de decks Pokémon" width="1600" height="620" loading="lazy">
-      </picture>
-      <div class="banner-texto">
-        <span class="etiqueta">¿Qué deck quieres probar ahora?</span>
-        <h2>Aggro. Control. Midrange.</h2>
-        <p>Revisa nuestros decks prearmados en venta, listos para jugar.</p>
-        <div class="acciones"><a class="btn btn--principal" href="#decks">Ver decks</a></div>
+    <section class="vitrina vitrina--invertida" id="v-decks">
+      <div class="vitrina-texto">
+        <span class="etiqueta">Deck - Packs</span>
+        <h2>Abre la caja y a jugar.</h2>
+        <p>Mazos completos y packs de cartas armados por nosotros, con el listado carta por carta.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#decks">Ver deck - packs</a></div>
       </div>
+      <a class="vitrina-arte mosaico" id="arte-decks" href="#decks" aria-label="Ver deck - packs"></a>
     </section>
 
-    <h2 class="subtitulo">Algo puede interesarte</h2>
+    <h2 class="subtitulo">También tenemos</h2>
 
-    <section class="banner texto-izq">
-      <picture>
-        <source media="(max-width: 720px)" srcset="assets/banners/sellados-movil.jpg">
-        <img src="assets/banners/sellados.jpg" alt="Producto sellado Pokémon: Elite Trainer Box y Booster Bundle" width="1600" height="620" loading="lazy">
-      </picture>
-      <div class="banner-texto">
-        <span class="etiqueta">Sellados</span>
-        <h2>No es mucho, pero es stock real.</h2>
-        <div class="acciones"><a class="btn btn--principal" href="#sellados">Ver qué hay</a></div>
-      </div>
-    </section>
-
-    <section class="banner texto-der">
-      <picture>
-        <source media="(max-width: 720px)" srcset="assets/banners/accesorios-movil.jpg">
-        <img src="assets/banners/accesorios.jpg" alt="Carpeta y cajas para guardar cartas" width="1600" height="620" loading="lazy">
-      </picture>
-      <div class="banner-texto">
+    <section class="vitrina" id="v-accesorios">
+      <div class="vitrina-texto">
         <span class="etiqueta">Accesorios</span>
-        <h2>Protege y organiza tus cartas.</h2>
-        <p>Cajas, pins, peluches y más. Revisa nuestro stock.</p>
-        <div class="acciones"><a class="btn btn--principal" href="#accesorios">Dar un vistazo</a></div>
+        <h2>Cuida tu colección con estilo.</h2>
+        <p>Cajas, pins, peluches y más: lo que ves es lo que hay en stock.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#accesorios">Ver accesorios</a></div>
       </div>
+      <a class="vitrina-arte mosaico" id="arte-accesorios" href="#accesorios" aria-label="Ver accesorios"></a>
+    </section>
+
+    <section class="vitrina vitrina--invertida" id="v-sellados" hidden>
+      <div class="vitrina-texto">
+        <span class="etiqueta">Sellados</span>
+        <h2>Sobres y cajas sin abrir.</h2>
+        <p>Producto sellado original, directo de la caja.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#sellados">Ver sellados</a></div>
+      </div>
+      <a class="vitrina-arte mosaico" id="arte-sellados" href="#sellados" aria-label="Ver sellados"></a>
     </section>
 
     <section class="info">
       <div class="info-caja">
         <h2>Quiénes somos</h2>
-        <p><strong>Tienda online · coordinación directa.</strong> Somos de la Región Metropolitana (Estación Central) y puedes coordinar directamente la entrega presencial. ¡Escríbenos!</p>
+        <p>Somos <strong>samplercard</strong>, una tienda pequeña de Estación Central. Vendemos por TCGMatch y por WhatsApp, y coordinamos la entrega en persona en la Región Metropolitana.</p>
       </div>
       <div class="info-caja">
         <h2>Contacto</h2>
