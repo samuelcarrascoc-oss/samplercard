@@ -5,7 +5,7 @@ const POR_TANDA = 48;
 
 const SECCIONES = {
   inicio: { titulo: "samplercard · Pokémon TCG Chile" },
-  singles: { titulo: "Singles", bajada: "Cartas sueltas en stock. Toca una carta para comprarla por WhatsApp o en TCGMatch." },
+  singles: { titulo: "Singles", bajada: "Cartas sueltas en stock. Toca una carta para consultar al WhatsApp o comprarla en TCGMatch." },
   decks: { titulo: "Deck - Packs", bajada: "Mazos completos y packs de cartas, listos para jugar." },
   accesorios: { titulo: "Accesorios", bajada: "Cajas, pins, peluches y más para cuidar tu colección." },
   sellados: { titulo: "Sellados", bajada: "Producto sellado: sobres, ETB y colecciones." },
@@ -23,7 +23,7 @@ function linkWhatsapp(p) {
   if (p.set) partes.push(p.set);
   if (p.idioma) partes.push(p.idioma);
   if (p.version && p.version !== "Normal") partes.push(p.version);
-  let texto = `Hola! Me interesa: ${partes.join(" · ")} a ${pesos(p.precio)}.`;
+  let texto = `Hola! Quiero consultar por: ${partes.join(" · ")} a ${pesos(p.precio)}.`;
   if (p.id) texto += ` ${TCGMATCH}${p.id}`;
   return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
 }
@@ -169,7 +169,7 @@ function abrirFicha(p) {
       <p class="grande">${pesos(p.precio)}</p>
       <p class="stock">${p.stock} disponible${p.stock === 1 ? "" : "s"}</p>
       <div class="botones">
-        <a class="boton whatsapp" href="${linkWhatsapp(p)}" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+        <a class="boton whatsapp" href="${linkWhatsapp(p)}" target="_blank" rel="noopener">Consultar al WhatsApp</a>
         ${p.id ? `<a class="boton tcgmatch" href="${TCGMATCH}${esc(p.id)}" target="_blank" rel="noopener">Comprar en TCG Match</a>` : ""}
       </div>
       <p class="nota">Retiro coordinado en Estación Central o envío (costo aparte).</p>
