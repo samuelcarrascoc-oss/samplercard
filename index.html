@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>samplercard · Pokémon TCG Chile</title>
+<meta name="description" content="Cartas Pokémon sueltas, decks, accesorios y sellado en Chile. Retiro en Estación Central o envío. Compra por WhatsApp o en TCGMatch.">
+<meta property="og:title" content="samplercard · Pokémon TCG Chile">
+<meta property="og:description" content="Cartas Pokémon sueltas, decks, accesorios y sellado. Compra por WhatsApp o en TCGMatch.">
+<meta property="og:image" content="assets/social.jpg">
+<meta name="theme-color" content="#0d1b2a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="cabecera">
+  <a class="marca" href="#singles">
+    <img src="assets/logo.png" alt="" width="54" height="80">
+    <span><strong>samplercard</strong><small>Pokémon TCG · Chile</small></span>
+  </a>
+  <nav class="secciones" aria-label="Secciones">
+    <a href="#singles" data-seccion="singles">Singles</a>
+    <a href="#decks" data-seccion="decks">Decks</a>
+    <a href="#accesorios" data-seccion="accesorios">Accesorios</a>
+    <a href="#sellados" data-seccion="sellados">Sellados</a>
+  </nav>
+</header>
+
+<main>
+  <section class="intro">
+    <h1 id="titulo">Singles</h1>
+    <p id="bajada">Cartas sueltas en stock. Toca una carta para comprarla por WhatsApp o en TCGMatch.</p>
+  </section>
+
+  <section class="filtros" id="filtros">
+    <input id="buscar" type="search" placeholder="Buscar carta, set o número" autocomplete="off">
+    <div class="filtros-fila">
+      <select id="f-idioma" aria-label="Idioma"><option value="">Todos los idiomas</option></select>
+      <select id="f-version" aria-label="Versión"><option value="">Todas las versiones</option></select>
+      <select id="f-set" aria-label="Set"><option value="">Todos los sets</option></select>
+      <select id="f-orden" aria-label="Orden">
+        <option value="nombre">Nombre A-Z</option>
+        <option value="precio-asc">Menor precio</option>
+        <option value="precio-desc">Mayor precio</option>
+      </select>
+    </div>
+    <p class="conteo" id="conteo"></p>
+  </section>
+
+  <div class="grilla" id="grilla" aria-live="polite"></div>
+  <button class="ver-mas" id="ver-mas" hidden>Ver más</button>
+  <p class="vacio" id="vacio" hidden></p>
+</main>
+
+<footer class="pie">
+  <p><strong>samplercard</strong> · Estación Central, Santiago · Retiro coordinado o envío</p>
+  <p>
+    <a class="enlace" id="pie-whatsapp" href="https://wa.me/56971022853" target="_blank" rel="noopener">WhatsApp</a> ·
+    <a class="enlace" href="https://tcgmatch.cl/@samplecard" target="_blank" rel="noopener">Tienda en TCGMatch</a>
+  </p>
+  <p class="actualizado" id="actualizado"></p>
+</footer>
+
+<dialog class="ficha" id="ficha">
+  <button class="cerrar" id="cerrar" aria-label="Cerrar">×</button>
+  <div class="ficha-cuerpo" id="ficha-cuerpo"></div>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

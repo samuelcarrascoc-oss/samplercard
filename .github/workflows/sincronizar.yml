@@ -1,0 +1,61 @@
+name: Sincronizar con TCGMatch y publicar
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # cada ~15 min (GitHub puede atrasarlo un poco)
+  workflow_dispatch:          # botón "Run workflow" para correrlo a mano
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  sincronizar:
+    runs-on: ubuntu-latest
+    outputs:
+      cambio: ${{ steps.guardar.outputs.cambio }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Bajar catálogo de TCGMatch
+        run: python scripts/sync.py
+      - name: Guardar si cambió
+        id: guardar
+        run: |
+          if git diff --quiet -- data; then
+            echo "cambio=no" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data
+            git commit -m "Catálogo actualizado desde TCGMatch"
+            git push
+            echo "cambio=si" >> "$GITHUB_OUTPUT"
+          fi
+
+  publicar:
+    needs: sincronizar
+    if: needs.sincronizar.outputs.cambio == 'si' || github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4
