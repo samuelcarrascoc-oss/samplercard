@@ -5,7 +5,7 @@ const POR_TANDA = 48;
 
 const SECCIONES = {
   inicio: { titulo: "samplercard · Pokémon TCG Chile" },
-  singles: { titulo: "Singles", bajada: "Cartas sueltas en stock. Toca una carta para consultar al WhatsApp o comprarla en TCGMatch." },
+  singles: { titulo: "Singles", bajada: "Cartas sueltas en stock. Toca una carta para ver el detalle." },
   decks: { titulo: "Deck - Packs", bajada: "Mazos completos y packs de cartas, listos para jugar." },
   accesorios: { titulo: "Accesorios", bajada: "Cajas, pins, peluches y más para cuidar tu colección." },
   sellados: { titulo: "Sellados", bajada: "Producto sellado: sobres, ETB y colecciones." },
