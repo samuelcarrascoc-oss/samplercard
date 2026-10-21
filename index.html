@@ -18,11 +18,12 @@
 </head>
 <body>
 <header class="cabecera">
-  <a class="marca" href="#singles">
+  <a class="marca" href="#inicio">
     <img src="assets/logo.png" alt="" width="54" height="80">
     <span><strong>samplercard</strong><small>Pokémon TCG · Chile</small></span>
   </a>
   <nav class="secciones" aria-label="Secciones">
+    <a href="#inicio" data-seccion="inicio">Inicio</a>
     <a href="#singles" data-seccion="singles">Singles</a>
     <a href="#decks" data-seccion="decks">Decks</a>
     <a href="#accesorios" data-seccion="accesorios">Accesorios</a>
@@ -31,7 +32,79 @@
 </header>
 
 <main>
-  <section class="intro">
+  <div class="portada" id="portada" hidden>
+    <section class="banner banner--hero texto-izq">
+      <picture>
+        <source media="(max-width: 720px)" srcset="assets/banners/hero-movil.jpg">
+        <img src="assets/banners/hero.jpg" alt="Cartas Pokémon ilustradas en abanico" width="1600" height="760">
+      </picture>
+      <div class="banner-texto">
+        <span class="etiqueta">Pokémon TCG · Chile</span>
+        <h1>Tus singles, en tus manos.</h1>
+        <p>Cartas sueltas, decks prearmados, accesorios y sellado. Coordina la entrega presencial en la Región Metropolitana.</p>
+        <div class="acciones">
+          <a class="btn btn--principal" href="#singles">Ver catálogo</a>
+          <a class="btn btn--suave" id="hero-whatsapp" href="https://wa.me/56971022853" target="_blank" rel="noopener">Escríbenos</a>
+        </div>
+        <div class="cifras" id="cifras"></div>
+      </div>
+    </section>
+
+    <section class="banner texto-der">
+      <picture>
+        <source media="(max-width: 720px)" srcset="assets/banners/decks-movil.jpg">
+        <img src="assets/banners/decks.jpg" alt="Cartas de decks Pokémon" width="1600" height="620" loading="lazy">
+      </picture>
+      <div class="banner-texto">
+        <span class="etiqueta">¿Qué deck quieres probar ahora?</span>
+        <h2>Aggro. Control. Midrange.</h2>
+        <p>Revisa nuestros decks prearmados en venta, listos para jugar.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#decks">Ver decks</a></div>
+      </div>
+    </section>
+
+    <h2 class="subtitulo">Algo puede interesarte</h2>
+
+    <section class="banner texto-izq">
+      <picture>
+        <source media="(max-width: 720px)" srcset="assets/banners/sellados-movil.jpg">
+        <img src="assets/banners/sellados.jpg" alt="Producto sellado Pokémon: Elite Trainer Box y Booster Bundle" width="1600" height="620" loading="lazy">
+      </picture>
+      <div class="banner-texto">
+        <span class="etiqueta">Sellados</span>
+        <h2>No es mucho, pero es stock real.</h2>
+        <div class="acciones"><a class="btn btn--principal" href="#sellados">Ver qué hay</a></div>
+      </div>
+    </section>
+
+    <section class="banner texto-der">
+      <picture>
+        <source media="(max-width: 720px)" srcset="assets/banners/accesorios-movil.jpg">
+        <img src="assets/banners/accesorios.jpg" alt="Carpeta y cajas para guardar cartas" width="1600" height="620" loading="lazy">
+      </picture>
+      <div class="banner-texto">
+        <span class="etiqueta">Accesorios</span>
+        <h2>Protege y organiza tus cartas.</h2>
+        <p>Cajas, pins, peluches y más. Revisa nuestro stock.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#accesorios">Dar un vistazo</a></div>
+      </div>
+    </section>
+
+    <section class="info">
+      <div class="info-caja">
+        <h2>Quiénes somos</h2>
+        <p><strong>Tienda online · coordinación directa.</strong> Somos de la Región Metropolitana (Estación Central) y puedes coordinar directamente la entrega presencial. ¡Escríbenos!</p>
+      </div>
+      <div class="info-caja">
+        <h2>Contacto</h2>
+        <p>WhatsApp: <a class="enlace" href="https://wa.me/56971022853" target="_blank" rel="noopener">+56 9 7102 2853</a><br>
+        Correo: <a class="enlace" href="mailto:samplercard@gmail.com">samplercard@gmail.com</a><br>
+        TCGMatch: <a class="enlace" href="https://tcgmatch.cl/@samplecard" target="_blank" rel="noopener">@samplecard</a></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="intro" id="intro">
     <h1 id="titulo">Singles</h1>
     <p id="bajada">Cartas sueltas en stock. Toca una carta para comprarla por WhatsApp o en TCGMatch.</p>
   </section>

@@ -4,6 +4,7 @@ const TCGMATCH = "https://tcgmatch.cl/producto/";
 const POR_TANDA = 48;
 
 const SECCIONES = {
+  inicio: { titulo: "samplercard · Pokémon TCG Chile" },
   singles: { titulo: "Singles", bajada: "Cartas sueltas en stock. Toca una carta para comprarla por WhatsApp o en TCGMatch." },
   decks: { titulo: "Decks", bajada: "Mazos armados listos para jugar." },
   accesorios: { titulo: "Accesorios", bajada: "Cajas, pins, peluches y más para tu colección." },
@@ -40,6 +41,7 @@ async function cargar() {
     return;
   }
   llenarFiltros();
+  llenarCifras();
   if (estado.datos.actualizado) {
     const f = new Date(estado.datos.actualizado);
     $("actualizado").textContent = "Precios y stock sincronizados con TCGMatch · " +
@@ -54,6 +56,15 @@ function llenarFiltros() {
   for (const [id, campo] of [["f-idioma", "idioma"], ["f-version", "version"], ["f-set", "set"]]) {
     for (const v of opciones(campo)) $(id).add(new Option(v, v));
   }
+}
+
+function llenarCifras() {
+  const cifras = [
+    [productos("singles").length, "singles en stock"],
+    [productos("decks").length, "decks armados"],
+    [productos("accesorios").length, "accesorios"],
+  ].filter(([n]) => n > 0);
+  $("cifras").innerHTML = cifras.map(([n, t]) => `<div><strong>${n.toLocaleString("es-CL")}</strong><span>${t}</span></div>`).join("");
 }
 
 function productos(seccion) {
@@ -141,12 +152,20 @@ function abrirFicha(p) {
 
 function irA(hash) {
   const s = (hash || "").replace("#", "");
-  estado.seccion = SECCIONES[s] ? s : "singles";
+  estado.seccion = SECCIONES[s] ? s : "inicio";
   const info = SECCIONES[estado.seccion];
+  const inicio = estado.seccion === "inicio";
+  document.querySelectorAll(".secciones a").forEach((a) => a.classList.toggle("activa", a.dataset.seccion === estado.seccion));
+  $("portada").hidden = !inicio;
+  for (const id of ["intro", "grilla"]) $(id).hidden = inicio;
+  $("filtros").hidden = estado.seccion !== "singles";
+  if (inicio) {
+    $("ver-mas").hidden = $("vacio").hidden = true;
+    document.title = info.titulo;
+    return;
+  }
   $("titulo").textContent = info.titulo;
   $("bajada").textContent = info.bajada;
-  $("filtros").hidden = estado.seccion !== "singles";
-  document.querySelectorAll(".secciones a").forEach((a) => a.classList.toggle("activa", a.dataset.seccion === estado.seccion));
   document.title = `${info.titulo} · samplercard`;
   if (estado.datos) filtrar();
 }
