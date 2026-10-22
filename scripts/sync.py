@@ -89,7 +89,7 @@ def accesorio(p):
         "stock": p.get("quantity", 0),
         "estado": ESTADOS.get(p.get("status"), p.get("status") or ""),
         "tipo": p.get("type", ""),
-        "es_deck": "deck" in nombre.lower() or bool(p.get("isDeck")),
+        "es_deck": any(t in nombre.lower() for t in ("deck", "pack")) or bool(p.get("isDeck")),
         "descripcion": p.get("description", ""),
         "fotos": fotos,
     }
