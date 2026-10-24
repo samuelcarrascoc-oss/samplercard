@@ -23,7 +23,7 @@ function linkWhatsapp(p) {
   if (p.set) partes.push(p.set);
   if (p.idioma) partes.push(p.idioma);
   if (p.version && p.version !== "Normal") partes.push(p.version);
-  let texto = `Hola! Quiero consultar por: ${partes.join(" · ")} a ${pesos(p.precio)}.`;
+  let texto = `Hola! Quiero consultar por: ${partes.join(" · ")} a ${pesos(p.precio)}${p.unidad ? " " + p.unidad : ""}.`;
   if (p.id) texto += ` ${TCGMATCH}${p.id}`;
   return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
 }
@@ -136,7 +136,7 @@ function tarjeta(p, i) {
     <h2>${esc(p.nombre)}</h2>
     ${detalle ? `<p class="detalle">${esc(detalle)}</p>` : ""}
     <div class="chips">${chips}</div>
-    <div class="precio"><strong>${pesos(p.precio)}</strong><span>${p.stock > 1 ? p.stock + " disp." : "1 disp."}</span></div>
+    <div class="precio"><strong>${pesos(p.precio)}${p.unidad ? ` <small>${esc(p.unidad)}</small>` : ""}</strong><span>${p.stock > 1 ? p.stock + " disp." : "1 disp."}</span></div>
   </button>`;
 }
 
@@ -166,7 +166,7 @@ function abrirFicha(p) {
     <div>
       <h2>${esc(p.nombre)}</h2>
       <p class="detalle">${esCarta ? esc(detalle).replace("&lt;br&gt;", "<br>") : detalle}</p>
-      <p class="grande">${pesos(p.precio)}</p>
+      <p class="grande">${pesos(p.precio)}${p.unidad ? ` <small>${esc(p.unidad)}</small>` : ""}</p>
       <p class="stock">${p.stock} disponible${p.stock === 1 ? "" : "s"}</p>
       <div class="botones">
         <a class="boton whatsapp" href="${linkWhatsapp(p)}" target="_blank" rel="noopener">Consultar al WhatsApp</a>

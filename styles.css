@@ -250,3 +250,4 @@ main { padding: 0 max(16px, calc((100% - 1200px) / 2)) 40px; }
   .banner-texto, .banner--hero .banner-texto { width: 54%; }
   .banner p, .cifras { display: none; }
 }
+.precio strong small, .ficha .grande small { font-size: .6em; font-weight: 600; color: var(--suave); }
