@@ -5,6 +5,7 @@ const POR_TANDA = 48;
 
 const SECCIONES = {
   inicio: { titulo: "samplercard · Pokémon TCG Chile" },
+  lista: { titulo: "Buscar lista" },
   singles: { titulo: "Singles", bajada: "Cartas sueltas en stock. Toca una carta para ver el detalle." },
   decks: { titulo: "Deck - Packs", bajada: "Mazos completos y packs de cartas, listos para jugar." },
   accesorios: { titulo: "Accesorios", bajada: "Cajas, pins, peluches y más para cuidar tu colección." },
@@ -184,10 +185,12 @@ function irA(hash) {
   const info = SECCIONES[estado.seccion];
   const inicio = estado.seccion === "inicio";
   document.querySelectorAll(".secciones a").forEach((a) => a.classList.toggle("activa", a.dataset.seccion === estado.seccion));
+  const sinGrilla = inicio || estado.seccion === "lista";
   $("portada").hidden = !inicio;
-  for (const id of ["intro", "grilla"]) $(id).hidden = inicio;
+  $("lista-sec").hidden = estado.seccion !== "lista";
+  for (const id of ["intro", "grilla"]) $(id).hidden = sinGrilla;
   $("filtros").hidden = estado.seccion !== "singles";
-  if (inicio) {
+  if (sinGrilla) {
     $("ver-mas").hidden = $("vacio").hidden = true;
     document.title = info.titulo;
     return;
@@ -209,5 +212,87 @@ $("grilla").addEventListener("click", (e) => {
 $("cerrar").addEventListener("click", () => $("ficha").close());
 $("ficha").addEventListener("click", (e) => { if (e.target === $("ficha")) $("ficha").close(); });
 window.addEventListener("hashchange", () => { irA(location.hash); window.scrollTo(0, 0); });
+
+// ---------- Buscar lista: el comprador pega su lista y se busca en el stock ----------
+// Códigos de set del juego online (formato de deck) → parte del nombre del set en TCGMatch
+const CODIGOS_SET = {
+  SVI: "Scarlet & Violet Base", PAL: "Paldea Evolved", OBF: "Obsidian Flames", MEW: "151", PAR: "Paradox Rift",
+  PAF: "Paldean Fates", TEF: "Temporal Forces", TWM: "Twilight Masquerade", SFA: "Shrouded Fable", SCR: "Stellar Crown",
+  SSP: "Surging Sparks", PRE: "Prismatic Evolutions", JTG: "Journey Together", DRI: "Destined Rivals", BLK: "Black Bolt",
+  WHT: "White Flare", MEG: "ME01", PFL: "Phantasmal Flames", ASC: "Ascended Heroes", POR: "Perfect Order",
+  MEP: "Mega Evolution Promo", SVP: "Scarlet & Violet Promo", MEE: "Mega Evolution Energies",
+};
+const ENCABEZADO = /^(pok[eé]mon|trainer|entrenador(es)?|energ(y|ía|ias)|total( cards)?|cartas?)\b[^a-z]*$/i;
+const nombreBase = (n) => normal(n.split(" - ")[0].replace(/\(.*?\)/g, "")).replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+const numeroInt = (n) => { const m = String(n || "").match(/\d+/); return m ? parseInt(m[0], 10) : null; };
+
+function leerLinea(linea) {
+  let t = linea.replace(/\s+/g, " ").trim();
+  if (!t || ENCABEZADO.test(t)) return null;
+  let cant = 1;
+  const mc = t.match(/^(\d{1,2})\s*x?\s+(.*)$/i) || t.match(/^(.*?)\s+x\s*(\d{1,2})$/i);
+  if (mc) { if (/^\d/.test(mc[1])) { cant = +mc[1]; t = mc[2]; } else { cant = +mc[2]; t = mc[1]; } }
+  t = t.replace(/\(.*?\)/g, " ").replace(/\s+/g, " ").trim();
+  let numero = null, set = null;
+  const mn = t.match(/\s#?(\d{1,3})(?:\/\d{1,3})?$/);
+  if (mn) { numero = parseInt(mn[1], 10); t = t.slice(0, mn.index).trim(); }
+  const ms = t.match(/\s([A-Z]{2,4}\d?)$/);
+  if (ms && CODIGOS_SET[ms[1]]) { set = CODIGOS_SET[ms[1]]; t = t.slice(0, ms.index).trim(); }
+  const nombre = normal(t).replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  return nombre ? { original: linea.trim(), cant, nombre, numero, set } : null;
+}
+
+function buscarLinea(p, idioma) {
+  const cartas = productos("singles").filter((c) => c.stock > 0);
+  let cands = cartas.filter((c) => nombreBase(c.nombre) === p.nombre);
+  if (!cands.length) cands = cartas.filter((c) => { const b = nombreBase(c.nombre); return b.startsWith(p.nombre + " ") || p.nombre.startsWith(b + " "); });
+  if (p.numero != null) cands = cands.filter((c) => numeroInt(c.numero) === p.numero);
+  if (p.set) { const conSet = cands.filter((c) => c.set.includes(p.set)); if (conSet.length) cands = conSet; }
+  const otroIdioma = idioma && cands.length && !cands.some((c) => c.idioma === idioma);
+  if (idioma && !otroIdioma) cands = cands.filter((c) => c.idioma === idioma);
+  cands.sort((a, b) => a.precio - b.precio);
+  const tomadas = [];
+  let falta = p.cant;
+  for (const c of cands) {
+    if (!falta) break;
+    const n = Math.min(falta, c.stock);
+    tomadas.push({ c, n });
+    falta -= n;
+  }
+  return { ...p, tomadas, falta, otroIdioma };
+}
+
+function buscarLista() {
+  const idioma = $("lista-idioma").value;
+  const filas = $("lista-texto").value.split(/\r?\n/).map(leerLinea).filter(Boolean).map((p) => buscarLinea(p, idioma));
+  const out = $("lista-resultado");
+  if (!filas.length) { out.innerHTML = `<p class="vacio">Escribe o pega al menos una carta.</p>`; return; }
+  const total = filas.reduce((s, f) => s + f.tomadas.reduce((t, x) => t + x.n * x.c.precio, 0), 0);
+  const encontradas = filas.reduce((s, f) => s + f.cant - f.falta, 0), pedidas = filas.reduce((s, f) => s + f.cant, 0);
+  const html = filas.map((f) => {
+    const clase = !f.tomadas.length ? "no" : f.falta ? "parcial" : "ok";
+    const icono = { ok: "✓", parcial: "◐", no: "✗" }[clase];
+    const sub = f.tomadas.reduce((t, x) => t + x.n * x.c.precio, 0);
+    const detalle = f.tomadas.map((x) => `${x.n}× ${esc(x.c.nombre)} · ${esc([x.c.set, x.c.idioma, x.c.version].filter(Boolean).join(" · "))} · ${pesos(x.c.precio)} c/u`).join("<br>");
+    const nota = clase === "no" ? "No la tenemos en stock" : f.falta ? `Tenemos ${f.cant - f.falta} de ${f.cant}` : "";
+    const aviso = f.otroIdioma ? `<br>No la tenemos en ${esc($("lista-idioma").value.toLowerCase())}; te mostramos otro idioma.` : "";
+    return `<div class="lista-fila ${clase}"><span class="icono">${icono}</span>
+      <div><div class="pedida">${f.cant}× ${esc(f.original.replace(/^\d{1,2}\s*x?\s+/i, ""))}</div>
+      <div class="detalle">${detalle}${detalle && nota ? "<br>" : ""}${nota}${aviso}</div></div>
+      <span class="subtotal">${f.tomadas.length ? pesos(sub) : "—"}</span></div>`;
+  }).join("");
+  const lineasPedido = filas.flatMap((f) => f.tomadas.map((x) => `${x.n}x ${x.c.nombre} (${[x.c.set, x.c.idioma, x.c.version].filter(Boolean).join(", ")}) ${pesos(x.c.precio)} c/u`));
+  const faltan = filas.filter((f) => f.falta).map((f) => `${f.falta}x ${f.original.replace(/^\d{1,2}\s*x?\s+/i, "")}`);
+  let msg = `Hola! Quiero consultar por esta lista:\n${lineasPedido.join("\n")}\nTotal: ${pesos(total)}`;
+  if (faltan.length) msg += `\n\nTambién busco (no aparece en stock):\n${faltan.join("\n")}`;
+  const wa = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  out.innerHTML = `<div class="lista-resumen"><div><strong>${pesos(total)}</strong>
+      <span>${encontradas} de ${pedidas} cartas encontradas en nuestro stock</span></div>
+      ${lineasPedido.length ? `<a class="boton whatsapp" href="${wa}" target="_blank" rel="noopener">Consultar al WhatsApp</a>` : ""}</div>
+    <div class="lista-filas">${html}</div>`;
+}
+
+$("lista-buscar").addEventListener("click", buscarLista);
+$("lista-idioma").addEventListener("change", () => { if ($("lista-resultado").innerHTML) buscarLista(); });
 
 cargar();

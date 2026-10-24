@@ -24,6 +24,7 @@
   </a>
   <nav class="secciones" aria-label="Secciones">
     <a href="#inicio" data-seccion="inicio">Inicio</a>
+    <a href="#lista" data-seccion="lista" class="destacado">Buscar lista</a>
     <a href="#singles" data-seccion="singles">Singles</a>
     <a href="#decks" data-seccion="decks">Deck - Packs</a>
     <a href="#accesorios" data-seccion="accesorios">Accesorios</a>
@@ -46,7 +47,23 @@
       <a class="vitrina-arte abanico" id="arte-hero" href="#singles" aria-label="Ver singles"></a>
     </section>
 
-    <section class="vitrina vitrina--invertida" id="v-decks">
+    <section class="vitrina vitrina--invertida vitrina--lista">
+      <div class="vitrina-texto">
+        <span class="etiqueta">Nuevo · Buscar lista</span>
+        <h2>Pega tu lista y te armamos el pedido.</h2>
+        <p>Copia tu deck o tu lista de faltantes: buscamos cada carta en nuestro stock, te mostramos qué tenemos y cuánto suma, y lo consultas por WhatsApp en un clic.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#lista">Buscar mi lista</a></div>
+      </div>
+      <a class="vitrina-arte lista-demo" href="#lista" aria-label="Buscar mi lista">
+        <span class="demo-linea ok">✓ 4 Pikachu 051/128</span>
+        <span class="demo-linea ok">✓ 1 Greninja ex MEP 099</span>
+        <span class="demo-linea parcial">◐ 3 Ultra Ball <em>(tenemos 1)</em></span>
+        <span class="demo-linea no">✗ 2 Charizard ex 223</span>
+        <span class="demo-total">Total encontrado <strong>$10.570</strong></span>
+      </a>
+    </section>
+
+    <section class="vitrina" id="v-decks">
       <div class="vitrina-texto">
         <span class="etiqueta">Deck - Packs</span>
         <h2>Abre la caja y a jugar.</h2>
@@ -58,7 +75,7 @@
 
     <h2 class="subtitulo">También tenemos</h2>
 
-    <section class="vitrina" id="v-accesorios">
+    <section class="vitrina vitrina--invertida" id="v-accesorios">
       <div class="vitrina-texto">
         <span class="etiqueta">Accesorios</span>
         <h2>Cuida tu colección con estilo.</h2>
@@ -68,7 +85,7 @@
       <a class="vitrina-arte mosaico" id="arte-accesorios" href="#accesorios" aria-label="Ver accesorios"></a>
     </section>
 
-    <section class="vitrina vitrina--invertida" id="v-sellados" hidden>
+    <section class="vitrina" id="v-sellados" hidden>
       <div class="vitrina-texto">
         <span class="etiqueta">Sellados</span>
         <h2>Sobres y cajas sin abrir.</h2>
@@ -91,6 +108,25 @@
       </div>
     </section>
   </div>
+
+  <section class="lista" id="lista-sec" hidden>
+    <div class="intro">
+      <h1>Buscar lista</h1>
+      <p>Pega tu lista (una carta por línea, con cantidad si quieres) y la buscamos en nuestro stock. Sirve el formato de deck del juego online, por ejemplo «4 Pikachu ex SVI 57», o simplemente «Pikachu 051/128».</p>
+    </div>
+    <div class="lista-form">
+      <textarea id="lista-texto" rows="9" placeholder="4 Pikachu 051/128&#10;2 Ultra Ball&#10;1 Greninja ex MEP 099"></textarea>
+      <div class="lista-opciones">
+        <select id="lista-idioma" aria-label="Idioma preferido">
+          <option value="">Cualquier idioma (la más barata)</option>
+          <option value="Inglés">Prefiero inglés</option>
+          <option value="Español">Prefiero español</option>
+        </select>
+        <button class="btn btn--principal" id="lista-buscar" type="button">Buscar en el stock</button>
+      </div>
+    </div>
+    <div id="lista-resultado"></div>
+  </section>
 
   <section class="intro" id="intro">
     <h1 id="titulo">Singles</h1>
