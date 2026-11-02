@@ -117,9 +117,9 @@ def main():
             print(f"Llegaron {n_nuevo} productos vs {n_ant} antes: parece una falla, no se guarda.")
             return 0
         if {k: anterior[k] for k in ("cartas", "accesorios")} == nuevo:
-            print("Sin cambios.")
-            return 0
+            print("Sin cambios en productos; solo se renueva la fecha de revisión.")
 
+    # la fecha se renueva en cada lectura exitosa, aunque no cambie nada
     nuevo["actualizado"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     SALIDA.parent.mkdir(exist_ok=True)
     SALIDA.write_text(json.dumps(nuevo, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
