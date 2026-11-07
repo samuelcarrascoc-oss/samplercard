@@ -80,8 +80,8 @@ function llenarCifras() {
 // Portada: las imágenes salen del stock real, así nunca muestra algo que no hay
 function llenarArte() {
   const img = (src, alt) => `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">`;
-  // las 3 cartas más caras cuya imagen sí carga (algunas fotos del catálogo fallan); la más cara al centro
-  const candidatas = productos("singles").filter((c) => c.foto).sort((a, b) => b.precio - a.precio).slice(0, 10);
+  // las 3 cartas más caras cuya imagen sí carga (algunas fotos del catálogo fallan o son una silueta sin dibujo); la más cara al centro
+  const candidatas = productos("singles").filter((c) => c.foto && !c.foto.includes("/silhouettes/")).sort((a, b) => b.precio - a.precio).slice(0, 10);
   const carga = (c) => new Promise((ok) => { const i = new Image(); i.onload = () => ok(c); i.onerror = () => ok(null); i.src = c.foto; });
   Promise.all(candidatas.map(carga)).then((r) => {
     const top = r.filter(Boolean).slice(0, 3);
