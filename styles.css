@@ -308,3 +308,32 @@ main { padding: 0 max(16px, calc((100% - 1200px) / 2)) 40px; }
   .lista-fila { grid-template-columns: 22px 1fr; }
   .lista-fila .subtotal { grid-column: 2; }
 }
+
+/* Aurora: luz de color que se mueve lento detrás de paneles de vidrio */
+body { background: #060d18; }
+body::before {
+  content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none; filter: blur(50px);
+  background:
+    radial-gradient(38% 34% at 18% 22%, rgba(0, 240, 255, .42), transparent 70%),
+    radial-gradient(42% 38% at 82% 16%, rgba(123, 47, 247, .55), transparent 70%),
+    radial-gradient(40% 36% at 70% 78%, rgba(255, 46, 136, .32), transparent 70%),
+    radial-gradient(36% 34% at 20% 84%, rgba(0, 120, 255, .4), transparent 70%);
+  animation: aurora 22s ease-in-out infinite alternate;
+}
+@keyframes aurora { to { transform: translate3d(5%, -4%, 0) rotate(8deg) scale(1.12); } }
+.cabecera { background: rgba(6, 13, 24, .6); backdrop-filter: blur(16px) saturate(160%); border-bottom-color: rgba(255, 255, 255, .1); }
+.vitrina, .vitrina--invertida, .info-caja {
+  background: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .025) 55%, rgba(0, 240, 255, .06));
+  backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, .16);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .2);
+}
+.vitrina::after { display: none; }
+.vitrina h1 { background: linear-gradient(100deg, #fff 30%, #7df6ff 65%, #c9a6ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.vitrina p, .info-caja p { color: #bcd0e2; }
+.btn--principal, .lista-opciones .btn--principal { background: linear-gradient(100deg, #00f0ff, #5aa8ff); color: #04212b; border: 0; box-shadow: 0 8px 28px rgba(0, 240, 255, .4); }
+.btn--principal:hover, .lista-opciones .btn--principal:hover { background: linear-gradient(100deg, #5ff6ff, #8ac2ff); }
+.abanico img, .mosaico img { box-shadow: 0 22px 50px rgba(0, 0, 0, .55), 0 0 36px rgba(0, 240, 255, .28), 0 0 0 1px rgba(255, 255, 255, .16); }
+.item { background: rgba(13, 27, 42, .72); }
+.filtros { background: rgba(6, 13, 24, .72); backdrop-filter: blur(16px); }
+@media (prefers-reduced-motion: reduce) { body::before { animation: none; } }
