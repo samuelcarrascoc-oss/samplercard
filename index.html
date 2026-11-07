@@ -141,10 +141,19 @@
       <select id="f-version" aria-label="Versión"><option value="">Todas las versiones</option></select>
       <select id="f-set" aria-label="Set"><option value="">Todos los sets</option></select>
       <select id="f-orden" aria-label="Orden">
+        <option value="destacadas">Destacadas</option>
         <option value="nombre">Nombre A-Z</option>
         <option value="precio-asc">Menor precio</option>
         <option value="precio-desc">Mayor precio</option>
       </select>
+    </div>
+    <div class="rapidos" id="rapidos">
+      <button class="rapido activo" type="button" data-rapido="">Todo</button>
+      <button class="rapido" type="button" data-rapido="holo">Holo</button>
+      <button class="rapido" type="button" data-rapido="espanol">Español</button>
+      <button class="rapido" type="button" data-rapido="ingles">Inglés</button>
+      <button class="rapido" type="button" data-rapido="barato">Menos de $1.000</button>
+      <button class="rapido" type="button" data-rapido="fullart">Full art</button>
     </div>
     <p class="conteo" id="conteo"></p>
   </section>

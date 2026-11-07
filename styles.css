@@ -337,3 +337,60 @@ body::before {
 .item { background: rgba(13, 27, 42, .72); }
 .filtros { background: rgba(6, 13, 24, .72); backdrop-filter: blur(16px); }
 @media (prefers-reduced-motion: reduce) { body::before { animation: none; } }
+
+/* Mejoras de productos y búsqueda */
+/* Buscador protagonista */
+.filtros { padding: 14px 16px; margin: 0 -16px; border-radius: 0 0 18px 18px; }
+#buscar {
+  padding: 15px 18px 15px 48px; border-radius: 999px; font-weight: 600;
+  background: rgba(255, 255, 255, .08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2300f0ff' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='6.5'/%3E%3Cpath d='m14 14 4.5 4.5'/%3E%3C/svg%3E") no-repeat 18px center;
+  border: 1px solid rgba(0, 240, 255, .4); box-shadow: 0 0 24px rgba(0, 240, 255, .16), inset 0 1px 0 rgba(255, 255, 255, .14);
+}
+#buscar:focus { outline: 0; border-color: var(--cian); box-shadow: 0 0 0 3px rgba(0, 240, 255, .22), 0 0 34px rgba(0, 240, 255, .36); }
+#buscar::placeholder { color: #a9c1d5; }
+.filtros select { padding: 9px 34px 9px 14px; border-radius: 999px; background-color: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .16); font-weight: 600; }
+.rapidos { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; scrollbar-width: none; }
+.rapidos::-webkit-scrollbar { display: none; }
+.rapido { flex: none; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .06); color: var(--texto); font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; }
+.rapido.activo { background: linear-gradient(100deg, #00f0ff, #5aa8ff); color: #04212b; border-color: transparent; }
+
+/* Tarjetas: la carta manda */
+.grilla { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; margin-top: 14px; }
+.item {
+  position: relative; overflow: hidden; padding: 12px; border-radius: 18px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, .1), rgba(13, 27, 42, .78) 42%);
+  border: 1px solid rgba(255, 255, 255, .13);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .34), inset 0 1px 0 rgba(255, 255, 255, .14);
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+}
+.item:hover { transform: translateY(-6px); border-color: rgba(0, 240, 255, .7); box-shadow: 0 20px 40px rgba(0, 0, 0, .45), 0 0 30px rgba(0, 240, 255, .3); }
+.item .foto { background: transparent; border-radius: 10px; }
+.item .foto img { filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .5)); transition: transform .25s; }
+.item:hover .foto img { transform: scale(1.04); }
+.item:has(.chip.holo) { border-color: rgba(125, 246, 255, .45); }
+.item:has(.chip.holo)::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .25s;
+  background: linear-gradient(115deg, transparent 30%, rgba(0, 240, 255, .16) 44%, rgba(255, 46, 136, .14) 54%, rgba(255, 215, 106, .12) 62%, transparent 74%);
+}
+.item:has(.chip.holo):hover::before { opacity: 1; }
+.item h2 { font-size: 1rem; font-weight: 800; }
+.chips { margin: 8px 0 10px; }
+.chip { padding: 2px 8px; background: rgba(255, 255, 255, .07); border-color: transparent; font-weight: 700; }
+.chip.holo { background: rgba(0, 240, 255, .14); border-color: transparent; }
+.chip.reverse { background: rgba(255, 46, 136, .14); border-color: transparent; }
+.precio strong { font-size: 1.3rem; background: linear-gradient(100deg, #fff, #7df6ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ver-mas { background: linear-gradient(100deg, #00f0ff, #5aa8ff); color: #04212b; border: 0; box-shadow: 0 8px 28px rgba(0, 240, 255, .4); }
+.ver-mas:hover { background: linear-gradient(100deg, #5ff6ff, #8ac2ff); }
+
+/* Celular: solo el buscador queda fijo, el resto de los filtros se va al bajar */
+@media (max-width: 720px) {
+  .filtros { display: contents; }
+  #buscar { position: sticky; top: 118px; z-index: 5; margin-top: 10px; padding-top: 12px; padding-bottom: 12px; background-color: rgba(9, 18, 32, .92); }
+  .filtros-fila { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-top: 8px; }
+  .filtros-fila::-webkit-scrollbar { display: none; }
+  .filtros select { flex: none; width: auto; max-width: 62vw; }
+  .conteo { margin-top: 6px; }
+  .grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .item { padding: 8px; border-radius: 14px; }
+  .precio strong { font-size: 1.1rem; }
+}

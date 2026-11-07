@@ -13,7 +13,7 @@ const SECCIONES = {
 };
 
 const $ = (id) => document.getElementById(id);
-const estado = { datos: null, seccion: "singles", lista: [], mostrados: 0 };
+const estado = { datos: null, seccion: "singles", lista: [], mostrados: 0, rapido: "" };
 
 const pesos = (n) => "$" + Number(n || 0).toLocaleString("es-CL");
 const normal = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -104,6 +104,20 @@ function productos(seccion) {
   return d.sellados;
 }
 
+const esSilueta = (c) => (c.foto || "").includes("/silhouettes/");
+// full art: por rareza o por número mayor al total del set (el catálogo marca algunas como Futuristic Rare)
+function esFullArt(c) {
+  const n = /(\d+)\/(\d+)/.exec(c.numero || "");
+  return /Ultra Rare|Illustration Rare|Hyper Rare/.test(c.rareza || "") || (!!n && +n[1] > +n[2]);
+}
+const RAPIDOS = {
+  holo: (c) => c.version === "Holo",
+  espanol: (c) => c.idioma === "Español",
+  ingles: (c) => c.idioma === "Inglés",
+  barato: (c) => c.precio < 1000,
+  fullart: esFullArt,
+};
+
 function filtrar() {
   let lista = productos(estado.seccion);
   if (estado.seccion === "singles") {
@@ -112,8 +126,10 @@ function filtrar() {
     lista = lista.filter((c) =>
       (!idioma || c.idioma === idioma) && (!version || c.version === version) && (!set || c.set === set) &&
       (!q || q.split(/\s+/).every((t) => normal(`${c.nombre} ${c.set} ${c.numero} ${c.rareza}`).includes(t))));
+    if (estado.rapido) lista = lista.filter(RAPIDOS[estado.rapido]);
     const orden = $("f-orden").value;
-    lista = [...lista].sort(orden === "precio-asc" ? (a, b) => a.precio - b.precio
+    lista = [...lista].sort(orden === "destacadas" ? (a, b) => esSilueta(a) - esSilueta(b) || b.precio - a.precio
+      : orden === "precio-asc" ? (a, b) => a.precio - b.precio
       : orden === "precio-desc" ? (a, b) => b.precio - a.precio
       : (a, b) => a.nombre.localeCompare(b.nombre, "es"));
     $("conteo").textContent = `${lista.length} carta${lista.length === 1 ? "" : "s"}`;
@@ -204,6 +220,13 @@ function irA(hash) {
 let espera;
 $("buscar").addEventListener("input", () => { clearTimeout(espera); espera = setTimeout(filtrar, 150); });
 ["f-idioma", "f-version", "f-set", "f-orden"].forEach((id) => $(id).addEventListener("change", filtrar));
+$("rapidos").addEventListener("click", (e) => {
+  const b = e.target.closest(".rapido");
+  if (!b) return;
+  estado.rapido = b.dataset.rapido;
+  document.querySelectorAll(".rapido").forEach((x) => x.classList.toggle("activo", x === b));
+  filtrar();
+});
 $("ver-mas").addEventListener("click", mostrarMas);
 $("grilla").addEventListener("click", (e) => {
   const b = e.target.closest(".item");
