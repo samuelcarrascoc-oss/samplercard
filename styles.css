@@ -258,7 +258,7 @@ main { padding: 0 max(16px, calc((100% - 1200px) / 2)) 40px; }
   display: flex; flex-direction: column; justify-content: center; gap: 10px; text-decoration: none;
   max-width: 420px; margin: 0 auto; width: 100%; padding: 22px; border-radius: 16px;
   background: rgba(11, 22, 34, .75); border: 1px solid var(--borde); box-shadow: 0 16px 36px rgba(0, 0, 0, .45);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92rem; min-height: 0; height: auto;
+  font-family: Manrope, system-ui, sans-serif; font-size: .98rem; font-weight: 600; font-variant-numeric: tabular-nums; min-height: 0; height: auto;
 }
 .demo-linea { color: var(--texto); }
 .demo-linea em { color: var(--suave); font-style: normal; }
@@ -273,7 +273,7 @@ main { padding: 0 max(16px, calc((100% - 1200px) / 2)) 40px; }
 .lista-form textarea {
   width: 100%; padding: 12px; border-radius: 12px; resize: vertical;
   background: var(--panel-2); color: var(--texto); border: 1px solid var(--borde);
-  font: 16px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font: 500 16px/1.6 Manrope, system-ui, sans-serif; font-variant-numeric: tabular-nums;
 }
 .lista-form textarea:focus, .lista-opciones select:focus { outline: 2px solid var(--cian); outline-offset: 1px; }
 .lista-opciones { display: flex; flex-wrap: wrap; gap: 10px; }
