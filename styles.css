@@ -339,7 +339,7 @@ body::before {
 
 /* Mejoras de productos y búsqueda */
 /* Buscador protagonista */
-.filtros { padding: 14px 16px; margin: 0 -16px; border-radius: 0 0 18px 18px; }
+.filtros { padding: 14px 16px; margin: 8px -16px 0; border-radius: 18px; border: 1px solid rgba(255, 255, 255, .12); }
 #buscar {
   padding: 15px 18px 15px 48px; border-radius: 999px; font-weight: 600;
   background: rgba(255, 255, 255, .08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2300f0ff' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='6.5'/%3E%3Cpath d='m14 14 4.5 4.5'/%3E%3C/svg%3E") no-repeat 18px center;
