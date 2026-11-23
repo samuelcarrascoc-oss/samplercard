@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es" data-tema="crema">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>samplercard · Pokémon TCG Chile (prueba Crema)</title>
+<meta name="description" content="Propuesta Crema vinilo: cartas Pokémon sueltas, decks, accesorios y sellado en Chile.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F3E9D8">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<!-- degradado del borde del logo (se usa en todos los logos de la página) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="logo-borde" x1="0" y1="0" x2="1" y2="1">
+      <stop offset=".42" style="stop-color:var(--logo-a)"/>
+      <stop offset=".58" style="stop-color:var(--logo-b)"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header class="cabecera">
+  <a class="marca" href="#inicio">
+    <svg class="logo" data-logo aria-hidden="true"></svg>
+    <span><strong>samplercard</strong><small>Pokémon TCG · Chile</small></span>
+  </a>
+  <nav class="secciones" aria-label="Secciones">
+    <a href="#inicio" data-seccion="inicio">Inicio</a>
+    <a href="#lista" data-seccion="lista" class="destacado">Buscar lista</a>
+    <a href="#singles" data-seccion="singles">Singles</a>
+    <a href="#decks" data-seccion="decks">Deck - Packs</a>
+    <a href="#accesorios" data-seccion="accesorios">Accesorios</a>
+    <a href="#sellados" data-seccion="sellados">Sellados</a>
+  </nav>
+</header>
+
+<main>
+  <div class="portada" id="portada" hidden>
+    <section class="vitrina vitrina--hero">
+      <!-- vinilo girando detrás de las cartas: mismo disco, anillo rojo y brazo amarillo del logo -->
+      <svg class="vinilo" viewBox="0 0 440 420" aria-hidden="true" focusable="false">
+        <g class="vinilo-disco">
+          <circle cx="205" cy="215" r="196" style="fill:var(--logo-disco);stroke:var(--logo-linea);stroke-opacity:.22" stroke-width="2.5"/>
+          <g fill="none" stroke="#fff" stroke-opacity=".055" stroke-width="1.4">
+            <circle cx="205" cy="215" r="186"/><circle cx="205" cy="215" r="176"/><circle cx="205" cy="215" r="166"/><circle cx="205" cy="215" r="156"/>
+            <circle cx="205" cy="215" r="146"/><circle cx="205" cy="215" r="136"/><circle cx="205" cy="215" r="126"/><circle cx="205" cy="215" r="116"/>
+          </g>
+          <path d="M205 215 L205 19 A196 196 0 0 1 343 76 Z" fill="#fff" fill-opacity=".07"/>
+          <path d="M205 215 L205 411 A196 196 0 0 1 67 354 Z" fill="#fff" fill-opacity=".07"/>
+          <circle cx="205" cy="215" r="82" fill="none" stroke-width="9" style="stroke:var(--logo-b)"/>
+          <circle cx="205" cy="215" r="56" fill="none" stroke-width="3" style="stroke:var(--logo-gris)"/>
+          <circle cx="205" cy="215" r="22" style="fill:var(--logo-a)"/>
+        </g>
+        <line x1="300" y1="118" x2="396" y2="30" stroke-width="17" stroke-linecap="round" style="stroke:var(--logo-a)"/>
+        <circle cx="396" cy="30" r="20" style="fill:var(--logo-a)"/>
+      </svg>
+      <div class="vitrina-texto">
+        <span class="etiqueta">Pokémon TCG · Santiago</span>
+        <h1>La carta que buscas, <mark>a un mensaje.</mark></h1>
+        <p>Singles en inglés y español revisados uno a uno, con precio y stock al día. Entrega coordinada en la Región Metropolitana o envío (costo aparte).</p>
+        <div class="acciones">
+          <a class="btn btn--principal" href="#singles">Ver singles</a>
+          <a class="btn btn--suave" href="#lista">Buscar mi lista</a>
+        </div>
+        <div class="cifras" id="cifras"></div>
+      </div>
+      <a class="vitrina-arte abanico" id="arte-hero" href="#singles" aria-label="Ver singles"></a>
+    </section>
+
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta-pista">
+        <span>Singles</span><span>Deck - Packs</span><span>Accesorios</span><span>Retiro en Estación Central</span><span>Envíos a todo Chile</span><span>Compra por WhatsApp o TCGMatch</span>
+        <span>Singles</span><span>Deck - Packs</span><span>Accesorios</span><span>Retiro en Estación Central</span><span>Envíos a todo Chile</span><span>Compra por WhatsApp o TCGMatch</span>
+      </div>
+    </div>
+
+    <section class="vitrina vitrina--invertida vitrina--lista">
+      <div class="vitrina-texto">
+        <span class="etiqueta etiqueta--roja">Nuevo · Buscar lista</span>
+        <h2>Pega tu lista y te armamos el pedido.</h2>
+        <p>Copia tu deck o tu lista de faltantes: buscamos cada carta en nuestro stock, te mostramos qué tenemos y cuánto suma, y lo consultas por WhatsApp en un clic.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#lista">Buscar mi lista</a></div>
+      </div>
+      <a class="vitrina-arte lista-demo" href="#lista" aria-label="Buscar mi lista">
+        <span class="demo-cabeza"><b>Tu lista</b><span>lado A</span></span>
+        <span class="demo-linea ok"><i>01</i><span>4× Pikachu 051/128</span><b>✓</b></span>
+        <span class="demo-linea ok"><i>02</i><span>1× Greninja ex MEP 099</span><b>✓</b></span>
+        <span class="demo-linea parcial"><i>03</i><span>3× Ultra Ball <em>(tenemos 1)</em></span><b>◐</b></span>
+        <span class="demo-linea no"><i>04</i><span>2× Charizard ex 223</span><b>✗</b></span>
+        <span class="demo-total">Total encontrado <strong>$10.570</strong></span>
+      </a>
+    </section>
+
+    <section class="vitrina" id="v-decks">
+      <div class="vitrina-texto">
+        <span class="etiqueta">Deck - Packs</span>
+        <h2>Abre tu deck y a jugar.</h2>
+        <p>Mazos completos y packs de cartas armados por nosotros, con el listado carta por carta.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#decks">Ver deck - packs</a></div>
+      </div>
+      <a class="vitrina-arte mosaico" id="arte-decks" href="#decks" aria-label="Ver deck - packs"></a>
+    </section>
+
+    <h2 class="subtitulo"><span>También tenemos</span><i class="pads" aria-hidden="true"><b></b><b></b><b></b></i></h2>
+
+    <section class="vitrina vitrina--invertida" id="v-accesorios">
+      <div class="vitrina-texto">
+        <span class="etiqueta">Accesorios</span>
+        <h2>Más allá de las cartas.</h2>
+        <p>Pins, peluches, cajas y más: lo que ves es lo que hay en stock.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#accesorios">Ver accesorios</a></div>
+      </div>
+      <a class="vitrina-arte mosaico" id="arte-accesorios" href="#accesorios" aria-label="Ver accesorios"></a>
+    </section>
+
+    <section class="vitrina" id="v-sellados" hidden>
+      <div class="vitrina-texto">
+        <span class="etiqueta">Sellados</span>
+        <h2>Sobres y cajas sin abrir.</h2>
+        <p>Producto sellado original, directo de la caja.</p>
+        <div class="acciones"><a class="btn btn--principal" href="#sellados">Ver sellados</a></div>
+      </div>
+      <a class="vitrina-arte mosaico" id="arte-sellados" href="#sellados" aria-label="Ver sellados"></a>
+    </section>
+
+    <section class="info">
+      <div class="info-caja">
+        <h2>Quiénes somos</h2>
+        <p>Somos <strong>samplercard</strong>, una tienda pequeña de Estación Central. Vendemos por TCGMatch y por WhatsApp, y coordinamos la entrega en persona en la Región Metropolitana.</p>
+      </div>
+      <div class="info-caja">
+        <h2>Contacto</h2>
+        <p><a class="enlace" href="https://wa.me/56971022853?text=Hola!%20Quiero%20consultar%20por%20un%20producto" target="_blank" rel="noopener">Consultar por WhatsApp</a> (+56 9 7102 2853)<br>
+        Correo: <a class="enlace" href="mailto:samplercard@gmail.com">samplercard@gmail.com</a><br>
+        TCGMatch: <a class="enlace" href="https://tcgmatch.cl/@samplecard" target="_blank" rel="noopener">@samplecard</a><br>
+        Instagram: <a class="enlace" href="https://www.instagram.com/samplercard/" target="_blank" rel="noopener">@samplercard</a></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="lista" id="lista-sec" hidden>
+    <div class="intro">
+      <h1>Buscar lista</h1>
+      <p>Pega tu lista (una carta por línea, con cantidad si quieres) y la buscamos en nuestro stock. Sirve el formato de deck del juego online, por ejemplo «4 Pikachu ex SVI 57», o simplemente «Pikachu 051/128».</p>
+    </div>
+    <div class="lista-form">
+      <textarea id="lista-texto" rows="9" placeholder="4 Pikachu 051/128&#10;2 Ultra Ball&#10;1 Greninja ex MEP 099"></textarea>
+      <div class="lista-opciones">
+        <select id="lista-idioma" aria-label="Idioma preferido">
+          <option value="">Cualquier idioma (la más barata)</option>
+          <option value="Inglés">Prefiero inglés</option>
+          <option value="Español">Prefiero español</option>
+        </select>
+        <button class="btn btn--principal" id="lista-buscar" type="button">Buscar en el stock</button>
+      </div>
+    </div>
+    <div id="lista-resultado"></div>
+  </section>
+
+  <section class="intro" id="intro">
+    <h1 id="titulo">Singles</h1>
+    <p id="bajada">Cartas sueltas en stock. Toca una carta para ver el detalle.</p>
+  </section>
+
+  <section class="filtros" id="filtros">
+    <input id="buscar" type="search" placeholder="Buscar carta, set o número" autocomplete="off">
+    <div class="filtros-fila">
+      <select id="f-idioma" aria-label="Idioma"><option value="">Todos los idiomas</option></select>
+      <select id="f-version" aria-label="Versión"><option value="">Todas las versiones</option></select>
+      <select id="f-set" aria-label="Set"><option value="">Todos los sets</option></select>
+      <select id="f-orden" aria-label="Orden">
+        <option value="destacadas">Destacadas</option>
+        <option value="nombre">Nombre A-Z</option>
+        <option value="precio-asc">Menor precio</option>
+        <option value="precio-desc">Mayor precio</option>
+      </select>
+    </div>
+    <div class="rapidos" id="rapidos">
+      <button class="rapido activo" type="button" data-rapido="">Todo</button>
+      <button class="rapido" type="button" data-rapido="holo">Holo</button>
+      <button class="rapido" type="button" data-rapido="espanol">Español</button>
+      <button class="rapido" type="button" data-rapido="ingles">Inglés</button>
+      <button class="rapido" type="button" data-rapido="barato">Menos de $1.000</button>
+      <button class="rapido" type="button" data-rapido="fullart">Full art</button>
+    </div>
+    <p class="conteo" id="conteo"></p>
+  </section>
+
+  <div class="grilla" id="grilla" aria-live="polite"></div>
+  <button class="ver-mas" id="ver-mas" hidden>Ver más</button>
+  <p class="vacio" id="vacio" hidden></p>
+</main>
+
+<footer class="pie">
+  <i class="pads" aria-hidden="true"><b></b><b></b><b></b></i>
+  <p><strong>samplercard</strong> · Estación Central, Santiago · Retiro coordinado o envío</p>
+  <p>
+    <a class="enlace" id="pie-whatsapp" href="https://wa.me/56971022853" target="_blank" rel="noopener">WhatsApp</a> ·
+    <a class="enlace" href="https://tcgmatch.cl/@samplecard" target="_blank" rel="noopener">Tienda en TCGMatch</a>
+  </p>
+  <p class="actualizado" id="actualizado"></p>
+</footer>
+
+<dialog class="ficha" id="ficha">
+  <button class="cerrar" id="cerrar" aria-label="Cerrar">×</button>
+  <div class="ficha-cuerpo" id="ficha-cuerpo"></div>
+</dialog>
+
+<script src="app.js"></script>
+<script src="logo.js"></script>
+</body>
+</html>
