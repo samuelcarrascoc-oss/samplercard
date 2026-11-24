@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-tema="crema">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,7 @@
 <meta property="og:image:height" content="628">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://samplercard.cl/assets/social.jpg">
-<meta name="theme-color" content="#0d1b2a">
+<meta name="theme-color" content="#F3E9D8">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -56,17 +56,29 @@
   ]
 }
 </script>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="aurora" aria-hidden="true"></div>
+<!-- degradado del borde del logo (se usa en todos los logos de la página) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="logo-borde" x1="0" y1="0" x2="1" y2="1">
+      <stop offset=".42" style="stop-color:var(--logo-a)"/>
+      <stop offset=".58" style="stop-color:var(--logo-b)"/>
+    </linearGradient>
+  </defs>
+</svg>
+
 <header class="cabecera">
   <a class="marca" href="#inicio">
-    <img src="assets/logo.png" alt="" width="54" height="80">
+    <svg class="logo" data-logo aria-hidden="true"></svg>
     <span><strong>samplercard</strong><small>Pokémon TCG · Chile</small></span>
   </a>
   <nav class="secciones" aria-label="Secciones">
@@ -90,30 +102,56 @@
   </noscript>
   <div class="portada" id="portada" hidden>
     <section class="vitrina vitrina--hero">
+      <!-- vinilo girando detrás de las cartas: mismo disco, anillo rojo y brazo amarillo del logo -->
+      <svg class="vinilo" viewBox="0 0 440 420" aria-hidden="true" focusable="false">
+        <g class="vinilo-disco">
+          <circle cx="205" cy="215" r="196" style="fill:var(--logo-disco);stroke:var(--logo-linea);stroke-opacity:.22" stroke-width="2.5"/>
+          <g fill="none" stroke="#fff" stroke-opacity=".055" stroke-width="1.4">
+            <circle cx="205" cy="215" r="186"/><circle cx="205" cy="215" r="176"/><circle cx="205" cy="215" r="166"/><circle cx="205" cy="215" r="156"/>
+            <circle cx="205" cy="215" r="146"/><circle cx="205" cy="215" r="136"/><circle cx="205" cy="215" r="126"/><circle cx="205" cy="215" r="116"/>
+          </g>
+          <path d="M205 215 L205 19 A196 196 0 0 1 343 76 Z" fill="#fff" fill-opacity=".07"/>
+          <path d="M205 215 L205 411 A196 196 0 0 1 67 354 Z" fill="#fff" fill-opacity=".07"/>
+          <circle cx="205" cy="215" r="82" fill="none" stroke-width="9" style="stroke:var(--logo-b)"/>
+          <circle cx="205" cy="215" r="56" fill="none" stroke-width="3" style="stroke:var(--logo-gris)"/>
+          <circle cx="205" cy="215" r="22" style="fill:var(--logo-a)"/>
+        </g>
+        <line x1="300" y1="118" x2="396" y2="30" stroke-width="17" stroke-linecap="round" style="stroke:var(--logo-a)"/>
+        <circle cx="396" cy="30" r="20" style="fill:var(--logo-a)"/>
+      </svg>
       <div class="vitrina-texto">
         <span class="etiqueta">Pokémon TCG · Santiago</span>
-        <h1>La carta que buscas, a un mensaje.</h1>
+        <h1>La carta que buscas, <mark>a un mensaje.</mark></h1>
         <p>Singles en inglés y español revisados uno a uno, con precio y stock al día. Entrega coordinada en la Región Metropolitana o envío (costo aparte).</p>
         <div class="acciones">
           <a class="btn btn--principal" href="#singles">Ver singles</a>
+          <a class="btn btn--suave" href="#lista">Buscar mi lista</a>
         </div>
         <div class="cifras" id="cifras"></div>
       </div>
       <a class="vitrina-arte abanico" id="arte-hero" href="#singles" aria-label="Ver singles"></a>
     </section>
 
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta-pista">
+        <span>Singles</span><span>Deck - Packs</span><span>Accesorios</span><span>Retiro en Estación Central</span><span>Envíos a todo Chile</span><span>Compra por WhatsApp o TCGMatch</span>
+        <span>Singles</span><span>Deck - Packs</span><span>Accesorios</span><span>Retiro en Estación Central</span><span>Envíos a todo Chile</span><span>Compra por WhatsApp o TCGMatch</span>
+      </div>
+    </div>
+
     <section class="vitrina vitrina--invertida vitrina--lista">
       <div class="vitrina-texto">
-        <span class="etiqueta">Nuevo · Buscar lista</span>
+        <span class="etiqueta etiqueta--roja">Nuevo · Buscar lista</span>
         <h2>Pega tu lista y te armamos el pedido.</h2>
         <p>Copia tu deck o tu lista de faltantes: buscamos cada carta en nuestro stock, te mostramos qué tenemos y cuánto suma, y lo consultas por WhatsApp en un clic.</p>
         <div class="acciones"><a class="btn btn--principal" href="#lista">Buscar mi lista</a></div>
       </div>
       <a class="vitrina-arte lista-demo" href="#lista" aria-label="Buscar mi lista">
-        <span class="demo-linea ok">✓ 4 Pikachu 051/128</span>
-        <span class="demo-linea ok">✓ 1 Greninja ex MEP 099</span>
-        <span class="demo-linea parcial">◐ 3 Ultra Ball <em>(tenemos 1)</em></span>
-        <span class="demo-linea no">✗ 2 Charizard ex 223</span>
+        <span class="demo-cabeza"><b>Tu lista</b><span>lado A</span></span>
+        <span class="demo-linea ok"><i>01</i><span>4× Pikachu 051/128</span><b>✓</b></span>
+        <span class="demo-linea ok"><i>02</i><span>1× Greninja ex MEP 099</span><b>✓</b></span>
+        <span class="demo-linea parcial"><i>03</i><span>3× Ultra Ball <em>(tenemos 1)</em></span><b>◐</b></span>
+        <span class="demo-linea no"><i>04</i><span>2× Charizard ex 223</span><b>✗</b></span>
         <span class="demo-total">Total encontrado <strong>$10.570</strong></span>
       </a>
     </section>
@@ -128,7 +166,7 @@
       <a class="vitrina-arte mosaico" id="arte-decks" href="#decks" aria-label="Ver deck - packs"></a>
     </section>
 
-    <h2 class="subtitulo">También tenemos</h2>
+    <h2 class="subtitulo"><span>También tenemos</span><i class="pads" aria-hidden="true"><b></b><b></b><b></b></i></h2>
 
     <section class="vitrina vitrina--invertida" id="v-accesorios">
       <div class="vitrina-texto">
@@ -219,6 +257,7 @@
 </main>
 
 <footer class="pie">
+  <i class="pads" aria-hidden="true"><b></b><b></b><b></b></i>
   <p><strong>samplercard</strong> · Estación Central, Santiago · Retiro coordinado o envío</p>
   <p>
     <a class="enlace" id="pie-whatsapp" href="https://wa.me/56971022853" target="_blank" rel="noopener">WhatsApp</a> ·
@@ -233,5 +272,6 @@
 </dialog>
 
 <script src="app.js"></script>
+<script src="logo.js"></script>
 </body>
 </html>

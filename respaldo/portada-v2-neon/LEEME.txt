@@ -1,0 +1,1 @@
+Portada v2 (neón cian/magenta, logo de rombos), vigente hasta el 24-nov-2026. Restaurar: git checkout portada-v2-neon -- index.html styles.css assets/logo.png assets/social.jpg assets/favicon-32.png assets/apple-touch-icon.png (y borrar logo.js/logo.svg). Tag git: portada-v2-neon.

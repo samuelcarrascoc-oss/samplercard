@@ -481,8 +481,12 @@ mark { color: inherit; padding: 0 .06em; white-space: nowrap; background: linear
 [data-tema="crema"] .lista-demo { background: #FFF6E6; box-shadow: 8px 8px 0 var(--a); }
 [data-tema="crema"] .ficha::backdrop { background: rgba(31, 26, 46, .55); }
 @media (max-width: 720px) {
-  [data-tema="crema"] .vitrina--hero::after { width: 80%; bottom: auto; top: 46%; height: 60px;
-    background: linear-gradient(#F2B824 0 12px, transparent 12px 16px, #F07F3C 16px 28px, transparent 28px 32px, #E5446D 32px 44px, transparent 44px 48px, #5B4BB7 48px 60px); }
+  /* celular: las franjas van al pie del abanico (detrás de las cartas) y no cruzan el título */
+  [data-tema="crema"] .vitrina--hero::after { display: none; }
+  [data-tema="crema"] .vitrina--hero .vitrina-arte { position: relative; }
+  [data-tema="crema"] .vitrina--hero .vitrina-arte::after {
+    content: ""; position: absolute; right: 0; bottom: 10%; z-index: -1; width: 78%; height: 48px; pointer-events: none;
+    background: linear-gradient(#F2B824 0 9px, transparent 9px 13px, #F07F3C 13px 22px, transparent 22px 26px, #E5446D 26px 35px, transparent 35px 39px, #5B4BB7 39px 48px); }
   [data-tema="crema"] .item .foto { padding: 5px; }
 }
 /* el abanico de cartas siempre encima del vinilo (en celular el orden visual cambia y el disco las tapaba) */
