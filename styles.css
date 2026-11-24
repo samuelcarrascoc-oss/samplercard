@@ -489,5 +489,9 @@ mark { color: inherit; padding: 0 .06em; white-space: nowrap; background: linear
     background: linear-gradient(#F2B824 0 9px, transparent 9px 13px, #F07F3C 13px 22px, transparent 22px 26px, #E5446D 26px 35px, transparent 35px 39px, #5B4BB7 39px 48px); }
   [data-tema="crema"] .item .foto { padding: 5px; }
 }
+/* tablet: el disco un poco más chico para que no pise el párrafo del texto */
+@media (min-width: 721px) and (max-width: 1000px) {
+  [data-tema="crema"] .vitrina--hero .vinilo { width: 50%; right: -40px; }
+}
 /* el abanico de cartas siempre encima del vinilo (en celular el orden visual cambia y el disco las tapaba) */
 [data-tema="crema"] .vitrina--hero .vitrina-arte { z-index: 3; }
