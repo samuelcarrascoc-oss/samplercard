@@ -57,5 +57,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+      - name: Esperar a que el artefacto quede visible (deploy-pages a veces lo busca antes y no lo encuentra)
+        run: sleep 30
       - id: deploy
         uses: actions/deploy-pages@v4
