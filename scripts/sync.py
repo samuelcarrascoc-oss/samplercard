@@ -79,8 +79,19 @@ def carta(p, ediciones):
     }
 
 
+def fotos_extra():
+    """data/fotos_extra.json: fotos propias (en assets/) que se insertan en un producto de TCGMatch
+    (TCGMatch solo acepta 3 fotos). Formato: {"<id producto>": [{"pos": 1, "foto": "assets/..."}]}"""
+    try:
+        return json.loads((Path(__file__).resolve().parent.parent / "data" / "fotos_extra.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
 def accesorio(p):
     fotos = [i["url"] for i in p.get("images") or [] if isinstance(i, dict) and i.get("url")]
+    for e in fotos_extra().get(p["_id"], []):
+        fotos.insert(min(e.get("pos", len(fotos)), len(fotos)), e["foto"])
     nombre = p.get("name", "")
     return {
         "id": p["_id"],
