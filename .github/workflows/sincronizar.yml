@@ -2,7 +2,7 @@ name: Sincronizar con TCGMatch y publicar
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # cada ~15 min (GitHub puede atrasarlo un poco)
+    - cron: "7 */6 * * *"     # cada 6 h: 03:07, 09:07, 15:07 y 21:07 Chile (UTC-3); GitHub puede atrasarlo
   workflow_dispatch:          # botón "Run workflow" para correrlo a mano
   push:
     branches: [main]
