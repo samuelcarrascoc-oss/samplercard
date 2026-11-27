@@ -153,7 +153,7 @@ function tarjeta(p, i) {
     <h2>${esc(p.nombre)}</h2>
     ${detalle ? `<p class="detalle">${esc(detalle)}</p>` : ""}
     <div class="chips">${chips}</div>
-    <div class="precio"><strong>${pesos(p.precio)}${p.unidad ? ` <small>${esc(p.unidad)}</small>` : ""}</strong><span>${p.stock > 1 ? p.stock + " disp." : "1 disp."}</span></div>
+    <div class="precio"><strong>${p.antes ? `<s class="antes">${pesos(p.antes)}</s> ` : ""}${pesos(p.precio)}${p.unidad ? ` <small>${esc(p.unidad)}</small>` : ""}</strong><span>${p.stock > 1 ? p.stock + " disp." : "1 disp."}</span></div>
   </button>`;
 }
 
@@ -183,7 +183,7 @@ function abrirFicha(p) {
     <div>
       <h2>${esc(p.nombre)}</h2>
       <p class="detalle">${esCarta ? esc(detalle).replace("&lt;br&gt;", "<br>") : detalle}</p>
-      <p class="grande">${pesos(p.precio)}${p.unidad ? ` <small>${esc(p.unidad)}</small>` : ""}</p>
+      <p class="grande">${p.antes ? `<s class="antes">${pesos(p.antes)}</s> ` : ""}${pesos(p.precio)}${p.unidad ? ` <small>${esc(p.unidad)}</small>` : ""}</p>
       <p class="stock">${p.stock} disponible${p.stock === 1 ? "" : "s"}</p>
       <div class="botones">
         <a class="boton whatsapp" href="${linkWhatsapp(p)}" target="_blank" rel="noopener">Consultar al WhatsApp</a>

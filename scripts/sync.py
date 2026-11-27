@@ -51,6 +51,23 @@ def bajar(categoria):
         time.sleep(0.4)
 
 
+_OFERTAS = None
+
+
+def antes(p):
+    """Precio tachado (oferta). El listado de TCGMatch no trae originalPrice, así que se lee de
+    data/ofertas.json ({"<id>": precio_antes}, lo escribe Claude al aplicar/terminar una oferta).
+    Solo se muestra si es mayor que el precio actual."""
+    global _OFERTAS
+    if _OFERTAS is None:
+        try:
+            _OFERTAS = json.loads((RAIZ / "data" / "ofertas.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            _OFERTAS = {}
+    o = _OFERTAS.get(p["_id"]) or p.get("originalPrice") or 0
+    return o if o > p.get("price", 0) else None
+
+
 def version(p):
     if p.get("isHoloReverse"):
         return "Reverse"
@@ -68,6 +85,7 @@ def carta(p, ediciones):
         "id": p["_id"],
         "nombre": p.get("name") or cat.get("name", ""),
         "precio": p.get("price", 0),
+        "antes": antes(p),
         "stock": p.get("quantity", 0),
         "idioma": IDIOMAS.get(p.get("language"), p.get("language") or ""),
         "estado": ESTADOS.get(p.get("status"), p.get("status") or ""),
@@ -97,6 +115,7 @@ def accesorio(p):
         "id": p["_id"],
         "nombre": nombre,
         "precio": p.get("price", 0),
+        "antes": antes(p),
         "stock": p.get("quantity", 0),
         "estado": ESTADOS.get(p.get("status"), p.get("status") or ""),
         "tipo": p.get("type", ""),

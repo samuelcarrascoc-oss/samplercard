@@ -495,3 +495,6 @@ mark { color: inherit; padding: 0 .06em; white-space: nowrap; background: linear
 }
 /* el abanico de cartas siempre encima del vinilo (en celular el orden visual cambia y el disco las tapaba) */
 [data-tema="crema"] .vitrina--hero .vitrina-arte { z-index: 3; }
+
+/* precio tachado (ofertas de TCGMatch, 27-nov-2026) */
+.antes { font-size: .72em; font-weight: 700; opacity: .6; margin-right: 4px; text-decoration-thickness: 2px; }
