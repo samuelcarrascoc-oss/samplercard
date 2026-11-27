@@ -2,8 +2,12 @@ name: Sincronizar con TCGMatch y publicar
 
 on:
   schedule:
-    - cron: "7 */6 * * *"     # cada 6 h: 03:07, 09:07, 15:07 y 21:07 Chile (UTC-3); GitHub puede atrasarlo
-  workflow_dispatch:          # botón "Run workflow" para correrlo a mano
+    - cron: "7,37 * * * *"    # respaldo cada 30 min; GitHub descarta muchas corridas programadas (27-nov: 1 de 3 en 14 h)
+  workflow_dispatch:          # botón "Run workflow"; el disparador del PC (Sitio/disparador) lo llama cada 20 min con forzar=no
+    inputs:
+      forzar:
+        description: "si = publicar aunque no haya cambios; no = publicar solo si cambió el catálogo"
+        default: "si"
   push:
     branches: [main]
 
@@ -38,13 +42,18 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data
             git commit -m "Catálogo actualizado desde TCGMatch"
-            git push
+            # si alguien subió algo a main mientras corría el sync (27-nov falló así: "fetch first"), reintenta sobre lo nuevo
+            for i in 1 2 3 4; do
+              git pull --rebase -X theirs origin main && git push && break
+              echo "push falló (intento $i), reintento"; sleep 5
+            done
+            git push --dry-run >/dev/null 2>&1 || { echo "no se pudo subir el catálogo"; exit 1; }
             echo "cambio=si" >> "$GITHUB_OUTPUT"
           fi
 
   publicar:
     needs: sincronizar
-    if: needs.sincronizar.outputs.cambio == 'si' || github.event_name != 'schedule'
+    if: needs.sincronizar.outputs.cambio == 'si' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.forzar != 'no')
     runs-on: ubuntu-latest
     environment:
       name: github-pages

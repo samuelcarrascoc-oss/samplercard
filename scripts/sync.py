@@ -5,6 +5,7 @@ Si TCGMatch falla o devuelve muchos menos productos que la vez anterior,
 NO se sobrescribe: el sitio queda con el último catálogo bueno.
 Solo usa la biblioteca estándar de Python.
 """
+import calendar
 import json
 import sys
 import time
@@ -147,9 +148,17 @@ def main():
             print(f"Llegaron {n_nuevo} productos vs {n_ant} antes: parece una falla, no se guarda.")
             return 0
         if {k: anterior[k] for k in ("cartas", "accesorios")} == nuevo:
+            # 27-nov: el disparador corre cada ~20 min; sin cambios solo se renueva la fecha si la anterior tiene más de 1 h
+            try:
+                edad = time.time() - calendar.timegm(time.strptime(anterior["actualizado"], "%Y-%m-%dT%H:%M:%SZ"))
+            except Exception:
+                edad = 1e9
+            if edad < 3600:
+                print(f"Sin cambios en productos y la fecha tiene {int(edad / 60)} min: no se toca.")
+                return 0
             print("Sin cambios en productos; solo se renueva la fecha de revisión.")
 
-    # la fecha se renueva en cada lectura exitosa, aunque no cambie nada
+    # la fecha se renueva al cambiar algo o si pasó más de 1 h desde la anterior
     nuevo["actualizado"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     SALIDA.parent.mkdir(exist_ok=True)
     SALIDA.write_text(json.dumps(nuevo, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
